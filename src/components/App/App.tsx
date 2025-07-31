@@ -1,7 +1,7 @@
 import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { Toaster } from "react-hot-toast";
-import { fetchMovies } from "../../services/movieService";
+import { fetchMovies } from "../../services/movieServise";
 import { useState } from "react";
 import type { Movie } from "../../types/Movie";
 import MovieGrid from "../MovieGrid/MovieGrid";
@@ -46,7 +46,7 @@ export default function App() {
       )}
       {error && <ErrorMessage message={error} />}
       {selectedMovie && (
-        <Moviemodal movie={selectedMovie} onClose={closeModal} />
+        <MovieModal movie={selectedMovie} onClose={closeModal} />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import css from "./MovieGrid.module.css";
 import type { Movie } from "../../types/Movie";
-import { getImageUrl } from "../../services/movieService";
+import { getImageUrl } from "../../services/movieServise";
 
 interface MovieGridProps {
   movies: Movie[];
