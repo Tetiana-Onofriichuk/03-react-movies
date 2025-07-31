@@ -2,7 +2,7 @@
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 const IMAGE_SIZE = "original";
 import axios from "axios";
-import type { Movie } from "../types/Movie";
+import type { Movie } from "../types/movie";
 
 interface FetchMoviesResponse {
   results: Movie[];
