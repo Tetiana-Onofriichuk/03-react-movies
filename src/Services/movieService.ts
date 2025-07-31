@@ -20,7 +20,7 @@ export async function fetchMovies(query: string): Promise<Movies[]> {
       },
     }
   );
-
+  console.log("RESPONSE DATA:", response.data);
   return response.data.results;
 }
 

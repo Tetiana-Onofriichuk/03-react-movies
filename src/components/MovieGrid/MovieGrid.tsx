@@ -6,7 +6,9 @@ interface MovieGridProps {
   movies: Movies[];
   onSelect: (movie: Movies) => void;
 }
+
 export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
+  console.log("Rendering MovieGrid", movies);
   if (movies.length === 0) return null;
 
   return (
@@ -24,7 +26,7 @@ export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
                   loading="lazy"
                 />
               ) : (
-                <div className={css.noImage}>No image available</div> // або заглушка
+                <div className={css.noImage}>No image available</div>
               )}
               <h2 className={css.title}>{movie.title}</h2>
             </div>
