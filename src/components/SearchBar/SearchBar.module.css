@@ -7,9 +7,14 @@
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
 
-  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-  width: 100vw;
+  width: 100%;
+  z-index: 999тзь;
+
+  display: flex;
 }
 
 .container {
