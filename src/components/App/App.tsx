@@ -28,7 +28,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div className={css.app}>
       <SearchBar onSearch={handleSearch} />
       <Toaster position="top-center" />
 
@@ -37,6 +37,6 @@ export default function App() {
       ) : (
         <MovieGrid movies={movies} onSelect={handleSelectMovie} />
       )}
-    </>
+    </div>
   );
 }
