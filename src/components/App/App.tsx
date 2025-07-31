@@ -3,28 +3,35 @@ import SearchBar from "../SearchBar/SearchBar";
 import { Toaster } from "react-hot-toast";
 import { fetchMovies } from "../../Services/movieService";
 import { useState } from "react";
-import type { Movies } from "../../types/Movies";
+import type { Movie } from "../../types/Movie";
 import MovieGrid from "../MovieGrid/MovieGrid";
 import Loader from "../Loader/Loader";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Moviemodal from "../MovieModal/MovieModal";
 
 export default function App() {
-  const [movies, setMovies] = useState<Movies[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+
   const handleSearch = async (newQuery: string) => {
     setIsLoading(true);
     try {
       const results = await fetchMovies(newQuery);
       setMovies(results);
     } catch (error) {
-      console.error("Failed to fetch movies", error);
+      setError("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSelectMovie = (movie: Movies) => {
-    console.log("Selected movie:", movie);
-    // Можна додати відкриття модалки або деталізацію фільму
+  const handleSelectMovie = (movie: Movie) => {
+    setSelectedMovie(movie);
+  };
+  const closeModal = () => {
+    setSelectedMovie(null);
   };
 
   return (
@@ -36,6 +43,10 @@ export default function App() {
         <Loader />
       ) : (
         <MovieGrid movies={movies} onSelect={handleSelectMovie} />
+      )}
+      {error && <ErrorMessage message={error} />}
+      {selectedMovie && (
+        <Moviemodal movie={selectedMovie} onClose={closeModal} />
       )}
     </div>
   );

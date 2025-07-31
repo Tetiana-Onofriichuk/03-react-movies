@@ -1,10 +1,10 @@
 import css from "./MovieGrid.module.css";
-import type { Movies } from "../../types/Movies";
+import type { Movie } from "../../types/Movie";
 import { getImageUrl } from "../../Services/movieService";
 
 interface MovieGridProps {
-  movies: Movies[];
-  onSelect: (movie: Movies) => void;
+  movies: Movie[];
+  onSelect: (movie: Movie) => void;
 }
 
 export default function MovieGrid({ movies, onSelect }: MovieGridProps) {

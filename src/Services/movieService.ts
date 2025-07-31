@@ -2,13 +2,13 @@
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 const IMAGE_SIZE = "original";
 import axios from "axios";
-import type { Movies } from "../types/Movies";
+import type { Movie } from "../types/Movie";
 
 interface FetchMoviesResponse {
-  results: Movies[];
+  results: Movie[];
 }
 
-export async function fetchMovies(query: string): Promise<Movies[]> {
+export async function fetchMovies(query: string): Promise<Movie[]> {
   const response = await axios.get<FetchMoviesResponse>(
     "https://api.themoviedb.org/3/search/movie",
     {
