@@ -1,6 +1,6 @@
 import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { fetchMovies } from "../../services/movieService";
 import { useState } from "react";
 import type { Movie } from "../../types/movie";
@@ -17,9 +17,15 @@ export default function App() {
 
   const handleSearch = async (newQuery: string) => {
     setIsLoading(true);
+    setError(null);
+    setMovies([]);
     try {
       const results = await fetchMovies(newQuery);
       setMovies(results);
+
+      if (results.length === 0) {
+        toast.error("No movies found for your request.");
+      }
     } catch (error) {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -36,7 +42,7 @@ export default function App() {
 
   return (
     <div className={css.app}>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSubmit={handleSearch} />
       <Toaster position="top-center" />
 
       {isLoading ? (
